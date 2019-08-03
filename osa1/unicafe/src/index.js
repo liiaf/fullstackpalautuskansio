@@ -19,6 +19,14 @@ const Statics = ({ text, value }) => {
 }
 const Statistics = ({ goods, neutrals, bads, all, average, prosent }) => {
 
+    if (all === 0) {
+        return (
+            <div>
+                No feedback given :(
+          </div>
+        )
+    }
+
     return (
         <div>
             <Statics text='Good' value={goods} />
@@ -38,8 +46,6 @@ const Button = ({ handleClick, text }) => (
 )
 
 
-
-
 const Average = ({ goods, bads, all }) => {
     return (
         <>
@@ -47,7 +53,7 @@ const Average = ({ goods, bads, all }) => {
         </>
     )
 }
-const CountProsent = ({goods, all}) => {
+const CountProsent = ({ goods, all }) => {
     return (
         <>
             {goods * 100 / all} %
@@ -56,9 +62,6 @@ const CountProsent = ({goods, all}) => {
     )
 
 }
-
-
-
 
 const App = () => {
     // tallenna napit omaan tilaansa
@@ -86,8 +89,6 @@ const App = () => {
 
     }
 
-
-
     return (
         <div>
             <Header header='Give feedback' />
@@ -99,10 +100,10 @@ const App = () => {
 
             <Statistics goods={good} neutrals={neutral} bads={bad} all={allClicks.length}
                 average={<Average goods={good} bads={bad} all={allClicks.length} />}
-                prosent = {<CountProsent goods={good} all={allClicks.length} />}
+                prosent={<CountProsent goods={good} all={allClicks.length} />}
             />
 
-            
+
         </div>
     )
 }
