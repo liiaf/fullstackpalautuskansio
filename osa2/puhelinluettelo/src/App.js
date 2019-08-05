@@ -38,8 +38,7 @@ const App = () => {
     }
 
   }
-
-
+  
   return (
     <div>
       <h2>Phonebook</h2>
