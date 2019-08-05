@@ -1,52 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Course from './components/course'
+import App from './App'
 
 
-
-const Header = (props) => {
-
-    return (
-        <div>
-            <h1>{props.course}</h1>
-        </div>
-    )
-}
-const Part = (props) => (
-
-    <p>
-        {props.part.name} {props.part.exercises}
-    </p>
-
-)
-
-const Content = (props) => {
-
-
-    return (
-        < div >
-            {props.parts.map(part => <Part key={part.id} part={part} />)}
-
-        </div >
-    )
-}
-
-const Total = (props) => {
-    let sum = 0
-    props.parts.map(part => { sum += part.exercises })
-    return (
-        <h3>
-            Number of exercises {sum}
-
-        </h3>
-            
-       
-
-    )
-}
-
-
-const App = () => {
     const courses = [
         {
             name: 'Half Stack application development',
@@ -90,15 +46,7 @@ const App = () => {
         }
     ]
 
-
-    return (
-
-
-        <div>
-            {courses.map((course, i) => <Course key={i} course={course} />)}
-        </div>
-
-    )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
+    ReactDOM.render(
+        <App courses={courses} />,
+        document.getElementById('root')
+      )

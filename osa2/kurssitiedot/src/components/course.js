@@ -1,7 +1,4 @@
 import React from 'react'
-
-
-
 const Header = (props) => {
 
     return (
@@ -19,8 +16,6 @@ const Part = (props) => (
 )
 
 const Content = (props) => {
-
-
     return (
         < div >
             {props.parts.map(part => <Part key={part.id} part={part} />)}
@@ -53,6 +48,4 @@ const Course = ({ course }) => {
         </div>
     )
 }
-
-
 export default Course
