@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import AddName from './components/AddName'
+import axios from 'axios'
 
 
 
@@ -11,6 +12,14 @@ const App = () => {
   ])
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  }, [])
 
   
 
