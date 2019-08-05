@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import Persons from './components/Persons'
+import AddName from './components/AddName'
+
 
 
 
@@ -9,7 +12,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
 
-  const rows = () => persons.map(person => <li key={person.id}>{person.name} {person.number}</li>)
+  
 
   const handleNamesChange = (event) => {
     setNewName(event.target.value)
@@ -41,26 +44,19 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <form onSubmit={addName}>
-        <div>
-          name: <input
-            value={newName}
-            onChange={handleNamesChange}
-          />
-        </div>
-        <div>number: <input
-          value={newPhone}
-          onChange={handlePhoneChange}
-        />
+      <h3>Add a new</h3>
 
-        </div>
-        <button type="submit">add</button>
-      </form>
-
+      <AddName 
+      addName={addName}
+      newName={newName}
+      handleNamesChange={handleNamesChange}
+      newPhone={newPhone}
+      handlePhoneChange={handlePhoneChange}
+      />
 
       <h2>Numbers</h2>
-
-      {rows()}
+      <Persons henkilot={persons}/>
+      
 
     </div >
   )
