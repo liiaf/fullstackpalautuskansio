@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import AddName from './components/AddName'
-import axios from 'axios'
+import nameService from './services/persons' 
 
 
 
@@ -14,12 +14,12 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('')
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-      })
-  }, [])
+    nameService
+    .getAll()
+      .then(initialNames => {
+      setPersons(initialNames)
+    })
+}, [])
 
 
 
@@ -39,18 +39,19 @@ const App = () => {
     }
     if (persons.find(person => person.name === newName)) {
       setNewName("")
+      setNewPhone("")
       window.alert(`${newName} is already added to phonebook`);
     } else {
       setPersons(persons.concat(nameObject))
-      setNewName("")
-      setNewPhone("")
 
-      axios
-        .post('http://localhost:3001/persons', nameObject)
-        .then(response => {
-          setPersons(persons.concat(response.data))
-          setNewName('')
-        })
+
+      nameService
+      .create(nameObject)
+        .then(returnedName => {
+        setPersons(persons.concat(returnedName))
+        setNewName('')
+        setNewPhone('')
+      })
     }
 
   }
