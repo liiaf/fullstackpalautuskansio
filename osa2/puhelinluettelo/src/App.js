@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import AddName from './components/AddName'
-import nameService from './services/persons' 
-
-
+import nameService from './services/persons'
 
 
 const App = () => {
@@ -15,11 +13,26 @@ const App = () => {
 
   useEffect(() => {
     nameService
-    .getAll()
+      .getAll()
       .then(initialNames => {
-      setPersons(initialNames)
-    })
-}, [])
+        setPersons(initialNames)
+      })
+  }, [])
+
+
+  const poistaPerson = (id) => {
+    const person = persons.find(n => n.id === id)
+    const name = person.name
+    if (window.confirm(`Delete ${name}?`)) {
+      nameService
+        .poista(id)
+        .then(
+          setPersons(persons.filter(n => n.id !== id))
+        )
+
+
+    }
+  }
 
 
 
@@ -46,15 +59,16 @@ const App = () => {
 
 
       nameService
-      .create(nameObject)
+        .create(nameObject)
         .then(returnedName => {
-        setPersons(persons.concat(returnedName))
-        setNewName('')
-        setNewPhone('')
-      })
+          setPersons(persons.concat(returnedName))
+          setNewName('')
+          setNewPhone('')
+        })
     }
 
   }
+
 
   return (
     <div>
@@ -71,13 +85,12 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <Persons henkilot={persons} />
-
+      <Persons
+        henkilot={persons}
+        poistaPerson={poistaPerson} />
 
     </div >
   )
-
-
 }
 
 export default App
