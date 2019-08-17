@@ -21,7 +21,7 @@ const App = () => {
       })
   }, [])
 
-  
+
 
   const handleNamesChange = (event) => {
     setNewName(event.target.value)
@@ -44,27 +44,34 @@ const App = () => {
       setPersons(persons.concat(nameObject))
       setNewName("")
       setNewPhone("")
+
+      axios
+        .post('http://localhost:3001/persons', nameObject)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+        })
     }
 
   }
-  
+
   return (
     <div>
       <h2>Phonebook</h2>
 
       <h3>Add a new</h3>
 
-      <AddName 
-      addName={addName}
-      newName={newName}
-      handleNamesChange={handleNamesChange}
-      newPhone={newPhone}
-      handlePhoneChange={handlePhoneChange}
+      <AddName
+        addName={addName}
+        newName={newName}
+        handleNamesChange={handleNamesChange}
+        newPhone={newPhone}
+        handlePhoneChange={handlePhoneChange}
       />
 
       <h2>Numbers</h2>
-      <Persons henkilot={persons}/>
-      
+      <Persons henkilot={persons} />
+
 
     </div >
   )
