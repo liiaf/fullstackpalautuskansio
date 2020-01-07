@@ -85,7 +85,13 @@ const App = () => {
       number: newPhone,
       id: persons.length + 1,
     }
-    if (persons.find(person => person.name === newName)) {
+    if (newName === "") {
+      setNewName("")
+      notify(`Name missing`);
+    } else if (newPhone === "") {
+      setNewPhone("")
+      notify(`Number missing`);
+    } else if (persons.find(person => person.name === newName)) {
       setNewName("")
       setNewPhone("")
       notify(`${newName} is already added to phonebook`);
@@ -97,9 +103,10 @@ const App = () => {
         .create(nameObject)
         .then(returnedName => {
           setPersons(persons.concat(returnedName))
-          setNewName('')
-          setNewPhone('')
+          
         })
+        setNewName('')
+        setNewPhone('')
         notify(`Added ${newName}`)
     }
 
