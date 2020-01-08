@@ -4,15 +4,6 @@ mongoose.set('useFindAndModify', false)
 
 const url = process.env.MONGODB_URI
 
-console.log('commecting to', url)
-
-mongoose.connect(url, { useNewUrlParser: true })
-  .then(() => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error connection to MongoDB:', error.message)
-  })
 
 const blogSchema = mongoose.Schema({
     title: String,
