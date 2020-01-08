@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Ruokaa ja vettä",
+    "author": "Sammakko",
+    "url": "www.blogi-koira.fi",
+    "likes": "14"
+}
+
+
