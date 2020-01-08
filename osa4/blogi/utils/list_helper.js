@@ -13,11 +13,32 @@ const totalLikes = (blogs) => {
     return total
   }
 
+  const favoriteBlog = (blogs) => {
+    if (blogs.length === 0) {
+      return null;
+    }
+  
+    let suosikkiBlog = blogs[0]
+
+    blogs.forEach((blog) => {
+      if (blog.likes > suosikkiBlog.likes) {
+        suosikkiBlog = blog;
+      }
+    })
+  
+    return {
+      title: suosikkiBlog.title,
+      author: suosikkiBlog.author,
+      likes: suosikkiBlog.likes
+    }
+  }
+
 
   
   module.exports = {
     dummy,
-    totalLikes
+    totalLikes,
+    favoriteBlog
   }
 
 
