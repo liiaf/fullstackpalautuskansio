@@ -1,23 +1,38 @@
 const mongoose = require('mongoose')
 
-mongoose.set('useFindAndModify', false)
 
-const url = process.env.MONGODB_URI
 
 
 const blogSchema = mongoose.Schema({
     title: String,
     author: String,
     url: String,
-    likes: Number
-})
-
-blogSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-      returnedObject.id = returnedObject._id
-      delete returnedObject._id
-      delete returnedObject.__v
+    likes: Number,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
     }
 })
 
-module.exports = mongoose.model('Blog', blogSchema)
+blogSchema.statics.formatNoIdNoUser = function(blog) {
+  return {
+    title: blog.title,
+    author: blog.author,
+    url: blog.url,
+    likes: blog.likes
+  };
+};
+
+blogSchema.statics.formatNoId = function(blog) {
+  return {
+    title: blog.title,
+    author: blog.author,
+    url: blog.url,
+    likes: blog.likes,
+    user: blog.user
+  };
+};
+
+const Blog = mongoose.model('Blog', blogSchema);
+
+module.exports = Blog;

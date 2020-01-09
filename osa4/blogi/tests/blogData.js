@@ -1,5 +1,15 @@
 const emptyList = []
 
+const einimeataikayttajaa =
+{
+
+    title: 'Go To Statement Considered Harmful',
+    author: 'Edsger W. Dijkstra',
+    url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+    likes: 5
+}
+
+
 const listWithOneBlog = [
     {
         _id: '5a422aa71b54a676234d17f8',
@@ -7,6 +17,8 @@ const listWithOneBlog = [
         author: 'Edsger W. Dijkstra',
         url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
         likes: 5,
+        user: '78',
+
         __v: 0
     }
 ]
@@ -62,8 +74,30 @@ const blogs = [
     }
 ]
 
+const noLikes = {
+    title: 'surullista',
+    author: 'Joku',
+    url: 'ei tiedossa'
+};
+
+const noTitle = {
+    author: 'testaaja',
+    url: 'testiosote',
+    likes: 9
+};
+
+const noUrl = {
+    title: 'Sammakkoparvi',
+    author: 'Saku',
+    likes: 2
+};
+
 module.exports = {
     emptyList,
     listWithOneBlog,
-    blogs
-  }
+    blogs,
+    noLikes,
+    noTitle,
+    noUrl,
+    einimeataikayttajaa
+}

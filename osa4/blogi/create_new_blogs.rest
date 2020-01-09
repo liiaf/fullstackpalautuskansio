@@ -2,10 +2,10 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Elämäni",
-    "author": "Samuel",
-    "url": "www.vihreä-koira.fi",
-    "likes": "68"
+    "title": "Elämäni ja koirat",
+    "author": "Samuelin veli",
+    "url": "www.vihreä-koira-ja-parta.fi",
+    "likes": "7"
 }
 
 
