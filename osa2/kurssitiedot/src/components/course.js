@@ -25,11 +25,11 @@ const Content = (props) => {
 }
 
 const Total = (props) => {
-    let sum = 0
-    props.parts.map(part => { sum += part.exercises })
+    let summa = props.parts.reduce((sum, osa) => sum + osa.exercises, 0);
+    
     return (
         <h3>
-            Number of exercises {sum}
+            Number of exercises {summa}
 
         </h3>      
 
